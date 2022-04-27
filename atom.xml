@@ -6,7 +6,7 @@
   <link href="https://gaohan-cmd.github.io/atom.xml" rel="self"/>
   
   <link href="https://gaohan-cmd.github.io/"/>
-  <updated>2022-04-20T12:12:46.033Z</updated>
+  <updated>2022-04-27T03:01:11.204Z</updated>
   <id>https://gaohan-cmd.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>解决layui数据表格回显问题</title>
+    <link href="https://gaohan-cmd.github.io/2022/04/27/jie-jue-layui-shu-ju-biao-ge-hui-xian-wen-ti/"/>
+    <id>https://gaohan-cmd.github.io/2022/04/27/jie-jue-layui-shu-ju-biao-ge-hui-xian-wen-ti/</id>
+    <published>2022-04-27T02:57:19.000Z</published>
+    <updated>2022-04-27T03:01:11.204Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="layui学习" scheme="https://gaohan-cmd.github.io/tags/layui%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo主题美化</title>

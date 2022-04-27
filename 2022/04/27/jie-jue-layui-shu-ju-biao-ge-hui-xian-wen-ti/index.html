@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="SpringMVC笔记1, HTML,CSS,JavaScript,JQuery,React,Vue.js,Java,Python等">
+    <meta name="keywords" content="解决layui数据表格回显问题, HTML,CSS,JavaScript,JQuery,React,Vue.js,Java,Python等">
     <meta name="description" content="专注于Web,分享生活,分享知识">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>SpringMVC笔记1 | Ghan</title>
+    <title>解决layui数据表格回显问题 | Ghan</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -433,12 +433,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">SpringMVC笔记1</h1>
+                    <h1 class="description center-align post-title">解决layui数据表格回显问题</h1>
                 </div>
             </div>
         </div>
@@ -552,9 +552,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/layui%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">layui学习</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -566,21 +570,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-19
+                    2022-04-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-19
+                    2022-04-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    12
+                    413
                 </div>
                 
 
@@ -607,7 +611,49 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>这是我的第一篇Hexo文章</p>
+                <p>有属性： private Date createtime;</p>
+<p>但是回显的时候，显示 {Object object}，想要转换成字符串格式显示。</p>
+<p><strong>layui 中显示：</strong></p>
+<p>在对应的实体类中添加属性：private String createtimestr;</p>
+<p>然后添加对应的 set/get 方法，但是方法处理的是 createtime</p>
+<p>但是在 Mybatis-plus 框架映射时，数据库表里面又没有该字段，获取数据的时候会报异常，unknown field “createtimestr” in table ，</p>
+<p><strong>解决办法，</strong>在添加的属性上面添加注解 @TableField(exist = false)</p>
+<p>用于表示表中没有该字段，不然报错。</p>
+<p>最后就是</p>
+<p><strong>方法二：</strong></p>
+<p>在前端页面创建处理时间的函数：</p>
+<pre class=" language-js"><code class="language-js"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>转换时间格式<span class="token operator">--</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
+ <span class="token keyword">function</span> <span class="token function">dateToStr</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">var</span> time <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>date<span class="token punctuation">.</span>time<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">var</span> y <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">var</span> M <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+ M <span class="token operator">=</span> M <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token string">"0"</span> <span class="token operator">+</span> M<span class="token punctuation">)</span> <span class="token punctuation">:</span> M<span class="token punctuation">;</span>
+ <span class="token keyword">var</span> d <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ d <span class="token operator">=</span> d <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token string">"0"</span> <span class="token operator">+</span> d<span class="token punctuation">)</span> <span class="token punctuation">:</span> d<span class="token punctuation">;</span>
+ <span class="token keyword">var</span> h <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ h <span class="token operator">=</span> h <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token string">"0"</span> <span class="token operator">+</span> h<span class="token punctuation">)</span> <span class="token punctuation">:</span> h<span class="token punctuation">;</span>
+ <span class="token keyword">var</span> m <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ m <span class="token operator">=</span> m <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token string">"0"</span> <span class="token operator">+</span> m<span class="token punctuation">)</span> <span class="token punctuation">:</span> m<span class="token punctuation">;</span>
+ <span class="token keyword">var</span> s <span class="token operator">=</span> time<span class="token punctuation">.</span><span class="token function">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ s <span class="token operator">=</span> s <span class="token operator">&lt;</span> <span class="token number">10</span> <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token string">"0"</span> <span class="token operator">+</span> s<span class="token punctuation">)</span> <span class="token punctuation">:</span> s<span class="token punctuation">;</span>
+ <span class="token keyword">var</span> str <span class="token operator">=</span> y <span class="token operator">+</span> <span class="token string">"-"</span> <span class="token operator">+</span> M <span class="token operator">+</span> <span class="token string">"-"</span> <span class="token operator">+</span> d <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> h <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> m <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> s<span class="token punctuation">;</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">return</span> str<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+</code></pre>
+<p>然后再模板输出</p>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>field<span class="token punctuation">:</span> <span class="token string">'createtime'</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'发布时间'</span><span class="token punctuation">,</span>sort<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> minWidth<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>templet<span class="token punctuation">:</span><span class="token string">'&lt;div>{{dateToStr(d.createtime)}}&lt;/div>'</span><span class="token punctuation">}</span>
+</code></pre>
+<p>或者</p>
+<pre class=" language-js"><code class="language-js"><span class="token punctuation">{</span>field<span class="token punctuation">:</span> <span class="token string">'createtime'</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'发布时间'</span><span class="token punctuation">,</span>sort<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> minWidth<span class="token punctuation">:</span> <span class="token number">100</span><span class="token punctuation">,</span>templet<span class="token punctuation">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> <span class="token function">dateToStr</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>createtime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre>
+<p>还有就是，时间对象里面会有个 time 时间戳属性，可以通过 new Date（xxx.time），即可。</p>
+<p>以上这篇解决 layui 数据表格 Date 日期格式的回显 Object 的问题就是小编分享给大家的全部内容了，希望能给大家一个参考。</p>
+<p>声明：登载此文出于传递更多信息之目的，并不意味着赞同其观点或证实其描述。</p>
 
                 
             </div>
@@ -634,7 +680,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://gaohan-cmd.github.io/2022/04/19/springmvc-bi-ji-1/">https://gaohan-cmd.github.io/2022/04/19/springmvc-bi-ji-1/</a>
+                    <a href="https://gaohan-cmd.github.io/2022/04/27/jie-jue-layui-shu-ju-biao-ge-hui-xian-wen-ti/">https://gaohan-cmd.github.io/2022/04/27/jie-jue-layui-shu-ju-biao-ge-hui-xian-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -671,7 +717,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/layui%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">layui学习</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -840,7 +890,7 @@
         repo: '',
         owner: '',
         admin: null,
-        id: '2022-04-19T21-05-25',
+        id: '2022-04-27T10-57-19',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -864,7 +914,7 @@
 <script src="/libs/gitment/gitment.js"></script>
 <script>
 var gitment = new Gitment({
-    id: 'Tue Apr 19 2022 21:05:25 GMT+0800',
+    id: 'Wed Apr 27 2022 10:57:19 GMT+0800',
     owner: '',
     repo: '',
     oauth: {
@@ -889,9 +939,9 @@ gitment.render('gitment-content');
 
 <script type="text/javascript">
     disqus_config = function () {
-        this.page.url = 'https://gaohan-cmd.github.io/2022/04/19/springmvc-bi-ji-1/';
-        this.page.identifier = '/2022/04/19/springmvc-bi-ji-1/';
-        this.page.title = 'SpringMVC笔记1';
+        this.page.url = 'https://gaohan-cmd.github.io/2022/04/27/jie-jue-layui-shu-ju-biao-ge-hui-xian-wen-ti/';
+        this.page.identifier = '/2022/04/27/jie-jue-layui-shu-ju-biao-ge-hui-xian-wen-ti/';
+        this.page.title = '解决layui数据表格回显问题';
     };
     let disqus_shortname = '';
 
@@ -941,9 +991,56 @@ gitment.render('gitment-content');
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/04/27/jie-jue-layui-shu-ju-biao-ge-hui-xian-wen-ti/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="解决layui数据表格回显问题">
+                        
+                        <span class="card-title">解决layui数据表格回显问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            解决 layui 数据表格 Date 日期格式的回显 Object 的问题
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Ghan
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/layui%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">layui学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2022/04/20/hexo-zhu-ti-mei-hua/">
                     <div class="card-image">
@@ -961,9 +1058,9 @@ gitment.render('gitment-content');
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -979,43 +1076,6 @@ gitment.render('gitment-content');
                         <span class="chip bg-color">博客主题</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/04/19/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-19
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            Ghan
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
