@@ -18,9 +18,9 @@
 
 我在博客中分享了一些关于设计和技术的文章。以下是一些值得一读的文章：
 
-- [如何设计出色的用户界面](articles/ui-design.md)
-- [Web 开发入门指南](articles/web-development.md)
-- [创意灵感的来源](articles/creative-inspiration.md)
+- [如何设计出色的用户界面](ヾ(≧▽≦*)o)
+- [Web 开发入门指南](ψ(｀∇´)ψ)
+- [创意灵感的来源]((～￣▽￣)～)
 
 ## 联系我
 
